@@ -1,0 +1,46 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "0a32ac0ebdca677786795fce1f5e8191",
+    "packages": [
+        {
+            "name": "erayalakese/envato-market-api",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/erayalakese/envato-market-api.git",
+                "reference": "158ec74cb69aa879f30955ce1d7afe7bf068a7c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/erayalakese/envato-market-api/zipball/158ec74cb69aa879f30955ce1d7afe7bf068a7c0",
+                "reference": "158ec74cb69aa879f30955ce1d7afe7bf068a7c0",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL v2"
+            ],
+            "authors": [
+                {
+                    "name": "Eray Alakese",
+                    "email": "erayalakese@gmail.com"
+                }
+            ],
+            "description": "Envato Market API to verify and download Envato purchases",
+            "time": "2015-08-19 21:49:37"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

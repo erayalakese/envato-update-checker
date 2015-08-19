@@ -1,0 +1,13 @@
+{
+    "name": "erayalakese/envato-update-checker",
+    "description": "Checks Envato WordPress plugins' updates and download its if any update available",
+    "require": {
+        "erayalakese/envato-market-api": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Eray Alakese",
+            "email": "erayalakese@gmail.com"
+        }
+    ]
+}
