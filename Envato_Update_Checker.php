@@ -1,4 +1,11 @@
 <?php
+/**
+ * Checks Envato WordPress plugins' updates and download its if any update available
+ *
+ * @author Eray Alakese <erayalakese@gmail.com>
+ * @version 1.0.0
+ * @license GPL v2
+ */
 require_once('vendor/autoload.php');
 class Envato_Update_Checker
 {
