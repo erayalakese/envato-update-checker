@@ -3,7 +3,7 @@
  * Checks Envato WordPress plugins' updates and download its if any update available
  *
  * @author Eray Alakese <erayalakese@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @license GPL v2
  */
 require_once('vendor/autoload.php');
@@ -100,4 +100,4 @@ class Envato_Update_Checker
 	    endif;
 	}
 }
-new Envato_Update_Checker("Plugin Name", "vcb", "http://erayalakese.com/envato-update-checker.json", "GTTTePxFvxlTacMrB5I3qqPtCd4D0Po4");
+//new Envato_Update_Checker("Plugin Name", "vcb", "http://erayalakese.com/envato-update-checker.json", "GTTTePxFvxlTacMrB5I3qqPtCd4D0Po4");
