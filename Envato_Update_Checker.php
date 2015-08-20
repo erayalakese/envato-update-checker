@@ -6,7 +6,9 @@
  * @version 1.0.1
  * @license GPL v2
  */
-require_once('vendor/autoload.php');
+namespace erayalakese;
+
+require_once(__DIR__.'/vendor/autoload.php');
 class Envato_Update_Checker
 {
 
@@ -100,4 +102,3 @@ class Envato_Update_Checker
 	    endif;
 	}
 }
-//new Envato_Update_Checker("Plugin Name", "vcb", "http://erayalakese.com/envato-update-checker.json", "GTTTePxFvxlTacMrB5I3qqPtCd4D0Po4");
