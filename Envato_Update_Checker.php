@@ -3,15 +3,18 @@
  * Checks Envato WordPress plugins' updates and download its if any update available
  *
  * @author Eray Alakese <erayalakese@gmail.com>
- * @version 1.0.1
+ * @version 1.2.0
  * @license GPL v2
  */
-require_once('vendor/autoload.php');
+namespace erayalakese;
+
+require_once(__DIR__.'/vendor/autoload.php');
 class Envato_Update_Checker
 {
 
 	private $plugin_name;
 	private $plugin_slug;
+	private $recent_version;
 	private $purchase_code;
 	private $envato_update_checker_json;
 
@@ -24,20 +27,23 @@ class Envato_Update_Checker
 	 * 4) Ask user to save purchase code.
 	 */
 
-	function __construct($plugin_name, $plugin_slug, $envato_update_checker_json, $personal_token)
+	function __construct($plugin_name, $plugin_slug, $recent_version, $envato_update_checker_json, $personal_token)
 	{
 		$this->plugin_name = $plugin_name;
 		$this->plugin_slug = $plugin_slug;
+		$this->recent_version = $recent_version;
 		$this->envato_update_checker_json = $envato_update_checker_json;
 		$this->personal_token = $personal_token;
 
-		add_action('admin_init', array($this, 'http_requests'));
+		$this->api = new \erayalakese\Envato_Market_API($this->personal_token);
+
 		add_action('admin_init', array($this, 'init'));
+		add_action('admin_init', array($this, 'http_requests'));
 	}
 
 	function init()
 	{
-		$this->purchase_code = get_option('euc_'+$this->plugin_slug+'_pc');
+		$this->purchase_code = get_option('euc_'.$this->plugin_slug.'_pc');
 		if($this->purchase_code === FALSE)
 		{
 			add_action('admin_notices', array($this, 'ask_for_pc'));
@@ -62,20 +68,19 @@ class Envato_Update_Checker
 	{
 		if(isset($_GET["euc_input_pc"]))
 		{
-			update_option('euc_'+$this->plugin_slug+'_pc', $_GET["euc_input_pc"]);
+			$r = update_option('euc_'.$this->plugin_slug.'_pc', $_GET["euc_input_pc"]);
 			wp_safe_redirect(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'wp-admin/index.php');
 			exit;
 		}
 		elseif(isset($_GET["euc_action"]) && $_GET["euc_action"] == 'download')
 		{
-			$api->download_item($this->purchase_code);
+			$this->api->download_item($this->purchase_code);
 		}
 	}
 
 	function update_check()
 	{
-	    $plugin_data = get_plugin_data( __FILE__ );
-		$version = $plugin_data['Version'];
+		$version = $this->recent_version;
 	    $url = $this->envato_update_checker_json;
 	    if(function_exists('curl_version')) :
 	        $CURL = curl_init();
@@ -100,4 +105,3 @@ class Envato_Update_Checker
 	    endif;
 	}
 }
-//new Envato_Update_Checker("Plugin Name", "vcb", "http://erayalakese.com/envato-update-checker.json", "GTTTePxFvxlTacMrB5I3qqPtCd4D0Po4");

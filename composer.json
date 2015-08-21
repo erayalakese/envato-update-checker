@@ -9,5 +9,8 @@
             "name": "Eray Alakese",
             "email": "erayalakese@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "classmap": ["vendor/"]
+    }
 }
