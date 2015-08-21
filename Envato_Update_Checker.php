@@ -3,7 +3,7 @@
  * Checks Envato WordPress plugins' updates and download its if any update available
  *
  * @author Eray Alakese <erayalakese@gmail.com>
- * @version 1.2.0
+ * @version 1.3.0
  * @license GPL v2
  */
 namespace erayalakese;
