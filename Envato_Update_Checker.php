@@ -3,7 +3,7 @@
  * Checks Envato WordPress plugins' updates and download its if any update available
  *
  * @author Eray Alakese <erayalakese@gmail.com>
- * @version 1.2.0
+ * @version 1.3.0
  * @license GPL v2
  */
 namespace erayalakese;
@@ -50,7 +50,9 @@ class Envato_Update_Checker
 		}
 		else
 		{
-			add_action('admin_notices', array($this, 'update_check'));
+			$pause_time = get_option('euc_'.$this->plugin_slug.'_pausetime');
+			if(!$pause_time || ($pause_time && time() > $pause_time+(60*60*24) ))
+				add_action('admin_notices', array($this, 'update_check'));
 		}
 	}
 
@@ -76,6 +78,18 @@ class Envato_Update_Checker
 		{
 			$this->api->download_item($this->purchase_code);
 		}
+		elseif(isset($_GET["euc_remind_later"]))
+		{
+			$this->remind_later();
+			wp_safe_redirect(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'wp-admin/index.php');
+			exit;
+		}
+		elseif(isset($_GET["euc_dont_remind"]) && is_numeric($_GET["euc_dont_remind"]))
+		{
+			$this->dont_remind($_GET["euc_dont_remind"]);
+			wp_safe_redirect(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'wp-admin/index.php');
+			exit;
+		}
 	}
 
 	function update_check()
@@ -96,12 +110,45 @@ class Envato_Update_Checker
 	    $json = json_decode($c);
 	    $new_version = str_replace('.', '' , $json->{$this->plugin_slug});
 	    $recent_version = str_replace('.', '' , $version);
-	    if($new_version > $recent_version) :
+	    $dont_remind = get_option('euc_'.$this->plugin_slug.'_dontremind');
+	    if($new_version > $recent_version && (!$dont_remind || ($dont_remind != (int)$new_version))) :
 	        ?>
 	        <div class="update-nag">
 	            New <strong><?=$this->plugin_name?> plugin</strong> update available. <a href="?euc_action=download">Click here</a> to download newest version of the plugin.
+	        	<br /><br />
+	        	<div style="float:right"><a href="?euc_remind_later" onclick="if(confirm('Are you sure?')) return true; else return false;">remind me later</a>&nbsp;<a href="?euc_dont_remind=<?=$new_version?>" onclick="if(confirm('Are you sure?')) return true; else return false;">don't warn me about this version again</a></div>
 	        </div>
 	    <?php
 	    endif;
+	}
+
+	function remind_later()
+	{
+		update_option('euc_'.$this->plugin_slug.'_pausetime', time());
+		add_action('admin_notices', array($this, 'remind_later_notice'));
+	}
+
+	function remind_later_notice()
+	{
+		?>
+		<div class="update-nag">
+            OK, we will remind you again 24 hours later.
+        </div>
+        <?php
+	}
+
+	function dont_remind($version)
+	{
+		update_option('euc_'.$this->plugin_slug.'_dontremind', $version);
+		add_action('admin_notices', array($this, 'dont_remind_notice'));
+	}
+
+	function dont_remind_notice()
+	{
+		?>
+		<div class="update-nag">
+            OK, we won't warn you again for this version.
+        </div>
+        <?php
 	}
 }
