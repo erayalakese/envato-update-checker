@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "68161562607d1162abf654e2e427b045",
+    "hash": "94dbd0557dc967b6aac872e276a11f72",
     "packages": [
         {
             "name": "erayalakese/envato-market-api",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erayalakese/envato-market-api.git",
-                "reference": "b842f7084ae15614bce9d1bd20829b2b507821d8"
+                "reference": "620a02c16d0898f4c55f2239bdf2bea23c1c9487"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erayalakese/envato-market-api/zipball/b842f7084ae15614bce9d1bd20829b2b507821d8",
-                "reference": "b842f7084ae15614bce9d1bd20829b2b507821d8",
+                "url": "https://api.github.com/repos/erayalakese/envato-market-api/zipball/620a02c16d0898f4c55f2239bdf2bea23c1c9487",
+                "reference": "620a02c16d0898f4c55f2239bdf2bea23c1c9487",
                 "shasum": ""
             },
             "type": "library",
@@ -32,7 +32,7 @@
                 }
             ],
             "description": "Envato Market API to verify and download Envato purchases",
-            "time": "2015-08-20 21:20:49"
+            "time": "2015-08-21 00:33:21"
         }
     ],
     "packages-dev": [],
