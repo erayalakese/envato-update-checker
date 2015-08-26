@@ -12,5 +12,6 @@
     ],
     "autoload": {
         "classmap": ["vendor/"]
-    }
+    },
+    "license": "GPL v2"
 }
