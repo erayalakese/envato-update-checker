@@ -10,8 +10,5 @@
             "email": "erayalakese@gmail.com"
         }
     ],
-    "autoload": {
-        "classmap": ["vendor/"]
-    },
     "license": "GPL v2"
 }
