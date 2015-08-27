@@ -10,8 +10,8 @@
             "email": "erayalakese@gmail.com"
         }
     ],
+    "license": "GPL v2",
     "autoload": {
-        "classmap": ["vendor/"]
-    },
-    "license": "GPL v2"
+        "classmap": ["Envato_Update_Checker.php"]
+    }
 }
