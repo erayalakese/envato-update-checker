@@ -8,7 +8,6 @@
  */
 namespace erayalakese;
 
-require_once(__DIR__.'/vendor/autoload.php');
 class Envato_Update_Checker
 {
 
